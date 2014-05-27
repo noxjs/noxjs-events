@@ -7,7 +7,13 @@
 Nox.module('events', function(box) {
   'use strict';
 
-  var Events;
+  var Events,
+
+  // used in loops
+  i,
+
+  // lenght of array
+  length;
 
   box.events = function(el) {
     return new Events(el);
@@ -20,11 +26,21 @@ Nox.module('events', function(box) {
   Events.fn = Events.prototype;
 
   Events.fn.on = function(action, callback) {
-    this.callback = callback;
+    if(this.elements.length) {
+      for(i = 0, length = this.elements.length; i < length; i += 1) {
+
+        Events.utils.addListener(this.elements[i], action, callback);
+      }
+    }
   };
 
   Events.fn.unbind = function(action, callback) {
-    this.callback = callback;
+    if(this.elements.length) {
+      for(i = 0, length = this.elements.length; i < length; i += 1) {
+
+        Events.utils.removeListener(this.elements[i], action, callback);
+      }
+    }
   };
 
 

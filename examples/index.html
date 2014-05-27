@@ -19,7 +19,12 @@
       };
 
       App.fn.addEvents = function() {
-        vent('.clickClass').on('click', function() {});
+        vent('.clickClass').on('click', function(e) {
+          console.log(this);
+        });
+        vent('#clickId').on('click', function(e) {
+          console.log(e);
+        });
       };
     });
 
