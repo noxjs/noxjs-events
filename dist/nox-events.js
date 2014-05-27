@@ -1,6 +1,6 @@
-/** noxjs-events - v0.0.0 - 2014-05-27
+/** noxjs-events - v0.0.1 - 2014-05-27
 * Copyright (c) 2014 Mauricio Soares de Oliveira;
-* Licensed MIT
+* Licensed MIT 
 */
 
 /**
@@ -25,12 +25,7 @@ Nox.module('events', function(box) {
   };
 
   Events = function(el) {
-    this.elements = [];
-    if(el.nodeName || el.tagName) {
-      this.elements.push(el);
-    } else {
-      this.elements = document.querySelectorAll(el);
-    }
+    this.elements = document.querySelectorAll(el);
   };
 
   Events.fn = Events.prototype;
@@ -38,6 +33,7 @@ Nox.module('events', function(box) {
   Events.fn.on = function(action, callback) {
     if(this.elements.length) {
       for(i = 0, length = this.elements.length; i < length; i += 1) {
+
         Events.utils.addListener(this.elements[i], action, callback);
       }
     }
@@ -46,6 +42,7 @@ Nox.module('events', function(box) {
   Events.fn.unbind = function(action, callback) {
     if(this.elements.length) {
       for(i = 0, length = this.elements.length; i < length; i += 1) {
+
         Events.utils.removeListener(this.elements[i], action, callback);
       }
     }
@@ -71,7 +68,7 @@ Nox.module('events', function(box) {
     };
 
     Events.utils.removeListener = function(el, type, fn) {
-      el.removeEventListener(type, fn, false);
+      el.removeListener(type, fn, false);
     };
 
   } else if(typeof document.attachEvent === 'function') {
@@ -84,5 +81,14 @@ Nox.module('events', function(box) {
       el.detachEvent('on' + type, fn);
     };
 
+  } else {
+    // damn that's old
+    Events.utils.addListener = function(el, type, fn) {
+      el['on' + type] = fn;
+    };
+
+    Events.utils.removeListener = function(el, type, fn) {
+      el['on' + type] = null;
+    };
   }
 });
