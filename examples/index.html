@@ -5,39 +5,26 @@
   <title>Document</title>
 </head>
 <body>
-  <a href="#" class="clickClass">Click1Class</a>
-  <a href="#" class="clickClass">Click2Class</a>
-  <a href="#" id="clickId">Click3Id</a>
-  <a href="#" id="clickId2">Click3Id</a>
+  <a href="#" class="myClass">Click1Class</a>
 
   <script src="nox.js"></script>
   <script src="../dist/nox-events.js"></script>
 
   <script>
-    Nox('App', 'events', function(App, vent) {
-      App.fn.initialize = function() {
-        this.addEvents();
+    Nox('App.Test', 'events', function(Test, vent) {
+      Test.fn.initialize = function() {
+        vent('.myClass').on('click', this.clickHandler);
       };
 
-      App.fn.addEvents = function() {
-        vent('.clickClass').on('click', this.clickHandler);
-        vent(document.getElementById('clickId2')).on('click', this.clickHandler);
-      };
-
-      App.fn.clickHandler = function(e) {
-        console.log(e);
+      Test.fn.clickHandler = function() {
         console.log(this);
-      };
-
-      App.fn.removeListeners = function() {
-        vent('.clickClass').unbind('click', this.clickHandler);
-        vent(document.getElementById('clickId2')).unbind('click', this.clickHandler);
       }
     });
 
-    var instanceOfApp = new App();
+    instanceOfApp = new App.Test();
+    console.log(instanceOfApp.__proto__);
+
     instanceOfApp.initialize();
-    // instanceOfApp.removeListeners();
   </script>
 </body>
 </html>
