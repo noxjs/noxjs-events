@@ -12,15 +12,18 @@
 Nox.module('events', function(box) {
   'use strict';
 
-  var events,
-    scope = {};
+  var Events;
 
-  events = box.events = function(el) {
-    console.log(this);
-    return box.events.prototype;
+  box.events = function(el) {
+    return new Events(el);
   };
 
-  events.prototype.on = function(action, callback) {
+  Events = function(el) {
+    this.elements = document.querySelectorAll(el);
+  };
+
+  Events.prototype.on = function(action, callback) {
+    console.log(this.elements);
     console.log(action, callback);
   };
 });
