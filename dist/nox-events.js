@@ -10,14 +10,17 @@
 */
 
 Nox.module('events', function(box) {
-  box.events = {};
+  'use strict';
 
-  /**
-  * A click method for elements
-  *
-  * @method click
-  */
-  box.events.click = function() {
+  var events,
+    scope = {};
 
+  events = box.events = function(el) {
+    console.log(this);
+    return box.events.prototype;
+  };
+
+  events.prototype.on = function(action, callback) {
+    console.log(action, callback);
   };
 });

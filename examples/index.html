@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <a href="#" class="clickClass">Click1Class</a>
+  <a href="#" class="clickClass">Click2Class</a>
+  <a href="#" id="clickId">Click3Id</a>
+
+  <script src="nox.js"></script>
+  <script src="../dist/nox-events.js"></script>
+
+  <script>
+    Nox('App', 'events', function(App, vent) {
+      App.fn.initialize = function() {
+        this.addEvents();
+      };
+
+      App.fn.addEvents = function() {
+        vent('.clickClass').on('click', function() {});
+      };
+    });
+
+    new App().initialize();
+  </script>
+</body>
+</html>
