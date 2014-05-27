@@ -45,6 +45,7 @@ module.exports = function(grunt) {
   config.jasmine = {};
   config.jasmine.pivotal = {
     src: [
+      'tests/helpers/jquery.js',
       'tests/helpers/nox.js',
       'src/core/nox-events.js'
     ],
