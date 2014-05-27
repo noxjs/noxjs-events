@@ -1,0 +1,31 @@
+{
+  "name": "noxjs-events",
+  "version": "0.0.0",
+  "description": "Events module for Nox.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noxjs/noxjs-events.git"
+  },
+  "keywords": [
+    "events",
+    "noxjs"
+  ],
+  "author": "Mauricio Soares de Oliveira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/noxjs/noxjs-events/issues"
+  },
+  "homepage": "https://github.com/noxjs/noxjs-events",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-jasmine": "^0.6.4",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-uglify": "^0.4.0"
+  }
+}
