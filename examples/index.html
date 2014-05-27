@@ -12,19 +12,11 @@
 
   <script>
     Nox('App.Test', 'events', function(Test, vent) {
-      Test.fn.initialize = function() {
-        vent('.myClass').on('click', this.clickHandler);
-      };
-
-      Test.fn.clickHandler = function() {
-        console.log(this);
-      }
+      console.log(typeof vent);
     });
 
-    instanceOfApp = new App.Test();
-    console.log(instanceOfApp.__proto__);
-
-    instanceOfApp.initialize();
+    var instance = new App.Test();
+    console.log(instance);
   </script>
 </body>
 </html>
