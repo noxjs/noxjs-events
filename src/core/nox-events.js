@@ -20,7 +20,12 @@ Nox.module('events', function(box) {
   };
 
   Events = function(el) {
-    this.elements = document.querySelectorAll(el);
+    this.elements = [];
+    if(el.nodeName || el.tagName) {
+      this.elements.push(el);
+    } else {
+      this.elements = document.querySelectorAll(el);
+    }
   };
 
   Events.fn = Events.prototype;
@@ -63,7 +68,7 @@ Nox.module('events', function(box) {
     };
 
     Events.utils.removeListener = function(el, type, fn) {
-      el.removeListener(type, fn, false);
+      el.removeEventListener(type, fn, false);
     };
 
   } else if(typeof document.attachEvent === 'function') {
