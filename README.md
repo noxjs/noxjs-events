@@ -60,31 +60,8 @@ new App().initialize();
 Easy busy, like so:
 
 ``` js
-// the "vent" parameter is optional, it can be any name you want
-Nox('App', 'events', function(App, vent) {
-  App.fn.initialize = function() {
-    this.addEvents();
-  };
-
-  App.fn.addEvents = function() {
-    vent('.clickClass').on('click', this.clickHandler);
-    vent(document.getElementById('someId')).on('click', this.clickHandler);
-  };
-
-  App.fn.clickHandler = function(e) {
-    console.log(e);
-    console.log(this);
-  };
-
-  App.fn.removeListeners = function() {
-    vent('.clickClass').unbind('click', this.clickHandler);
-    vent(document.getElementById('someId')).unbind('click', this.clickHandler);
-  }
-});
-
-var instanceOfApp = new App();
-instanceOfApp.initialize();
-instanceOfApp.removeListeners();
+vent('.clickClass').on('click', this.clickHandler);
+vent('.clickClass').unbind('click', this.clickHandler);
 ```
 
 ## Todos
