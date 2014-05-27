@@ -8,6 +8,7 @@
   <a href="#" class="clickClass">Click1Class</a>
   <a href="#" class="clickClass">Click2Class</a>
   <a href="#" id="clickId">Click3Id</a>
+  <a href="#" id="clickId2">Click3Id</a>
 
   <script src="nox.js"></script>
   <script src="../dist/nox-events.js"></script>
@@ -19,16 +20,24 @@
       };
 
       App.fn.addEvents = function() {
-        vent('.clickClass').on('click', function(e) {
-          console.log(this);
-        });
-        vent('#clickId').on('click', function(e) {
-          console.log(e);
-        });
+        vent('.clickClass').on('click', this.clickHandler);
+        vent(document.getElementById('clickId2')).on('click', this.clickHandler);
       };
+
+      App.fn.clickHandler = function(e) {
+        console.log(e);
+        console.log(this);
+      };
+
+      App.fn.removeListeners = function() {
+        vent('.clickClass').unbind('click', this.clickHandler);
+        vent(document.getElementById('clickId2')).unbind('click', this.clickHandler);
+      }
     });
 
-    new App().initialize();
+    var instanceOfApp = new App();
+    instanceOfApp.initialize();
+    // instanceOfApp.removeListeners();
   </script>
 </body>
 </html>
