@@ -70,7 +70,7 @@ vent('.clickClass').unbind('click', this.clickHandler);
 
 - Improve this README.
 
-- Create tests
+- Improve tests
 
 ## Maintainer
 
