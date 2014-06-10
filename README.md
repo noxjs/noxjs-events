@@ -28,7 +28,7 @@ Nox('App', 'events', function(App, vent) {
   };
 });
 
-new App().initialize();
+new App();
 ```
 
 Pretty simple... it works with all native events of browser such as `click` ,`mouseover`, `mouseenter` and so on...
@@ -51,7 +51,7 @@ Nox('App', 'events', function(App, vent) {
   };
 });
 
-new App().initialize();
+new App();
 ```
 
 
