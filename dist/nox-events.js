@@ -1,4 +1,4 @@
-/** noxjs-events - v0.0.1 - 2014-06-12
+/** noxjs-events - v0.0.2 - 2014-06-12
 * Copyright (c) 2014 Mauricio Soares de Oliveira;
 * Licensed MIT 
 */
