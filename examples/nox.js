@@ -1,4 +1,4 @@
-/** nox.js - v0.0.2 - 2014-05-26
+/** nox.js - v0.0.7 - 2014-06-12
 * Copyright (c) 2014 Mauricio Soares de Oliveira;
 * Licensed MIT
 */
@@ -22,22 +22,30 @@
       // all modules from the args will be stored in here
       modules = Nox.methods.getModules(args),
 
+      newArgs = [],
+
       // defines a dependencies object, where all
       // dependencies are stored to pass in the callback
-      dependencies = {},
-
-      newArgs = [],
+      dependencie,
 
       // the function after aliased and with modules
       namespace,
+
+      // slice prototype
+      slice = Array.prototype.slice,
+
+      // arguments to initialize
+      initArgs,
 
       // used in loopings
       i;
 
     // starts all the modules
     for(i = 0; i < modules.length; i += 1) {
-      Nox.modules[modules[i]](dependencies);
-      newArgs.push(dependencies[modules[i]]);
+
+      dependencie = Nox.modules[modules[i]]();
+
+      newArgs.push(dependencie);
     }
 
     // adds the Callback to the namespace
@@ -51,13 +59,17 @@
       newArgs.unshift(namespace);
 
       // calls the callback with the function itself, and the dependencies
-      callback.apply({}, newArgs);
-      // console.log(fn.parent[fn.index]);
+      callback.apply(this, newArgs);
+
+      if(typeof namespace.fn.initialize === 'function') {
+        initArgs = slice.call(arguments);
+        namespace.fn.initialize.apply(this, initArgs);
+      }
     };
 
     // Adds the new constructor as a Nox Module
-    Nox.module(ns_string, function(box) {
-      box[ns_string] = namespace;
+    Nox.module(ns_string, function() {
+      return namespace;
     });
   };
 

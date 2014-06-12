@@ -12,7 +12,9 @@
 
   <script>
     Nox('App.Test', 'events', function(Test, vent) {
-      console.log(typeof vent);
+      vent('.myClass').on('click', function() {
+        console.log('teste');
+      })
     });
 
     var instance = new App.Test();

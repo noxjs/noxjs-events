@@ -4,10 +4,12 @@
 * @module events
 */
 
-Nox.module('events', function(box) {
+Nox.module('events', function() {
   'use strict';
 
   var Events,
+
+  events,
 
   // used in loops
   i,
@@ -15,7 +17,7 @@ Nox.module('events', function(box) {
   // lenght of array
   length;
 
-  box.events = function(el) {
+  events = function(el) {
     return new Events(el);
   };
 
@@ -91,4 +93,6 @@ Nox.module('events', function(box) {
       el['on' + type] = null;
     };
   }
+
+  return events;
 });
